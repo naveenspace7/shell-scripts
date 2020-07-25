@@ -1,0 +1,33 @@
+#!/bin/bash
+
+outfile=$1
+
+filename=$(basename -- "$1")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+#echo $filename
+#echo $extension
+#echo $2
+
+shift
+
+echo $@
+
+case $extension in
+
+ gz)
+  echo "Compressing tar.gz file..."
+  tar -cvzf $outfile $@
+ ;;
+
+ zip)
+  echo "Compressing zip file..."
+  zip $outfile $@
+ ;;
+
+ bz2)
+  echo "Compressing bz2 file... [not implemented]"
+ ;;
+
+esac

@@ -1,0 +1,55 @@
+#!/bin/bash
+
+listreq=$1
+
+if [ $listreq == "list" ]; then
+ shift
+fi
+
+filename=$(basename -- "$1")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+#echo $filename
+#echo $extension
+#echo $2
+
+if [ $listreq == "list" ]; then
+ 
+ echo "Listing file content"
+
+ case $extension in
+
+  gz)
+   tar -tf $1
+  ;;
+
+  zip)
+   unzip -l $1
+  ;;
+
+  bz2)
+  ;;
+
+ esac
+
+else
+
+ case $extension in
+
+  gz)
+   echo "Uncompressing tar.gz file..."
+   tar -xvzf $1
+  ;;
+
+  zip)
+   echo "Uncompressing zip file..."
+   zip $outfile $@
+  ;;
+
+  bz2)
+   echo "Compressing bz2 file... [not implemented]"
+  ;;
+
+ esac
+fi
