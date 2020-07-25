@@ -19,8 +19,8 @@ if [ $listreq == "list" ]; then
  echo "Listing file content"
 
  case $extension in
-
-  gz)
+  
+  tgz | gz)
    tar -tf $1
   ;;
 
@@ -37,14 +37,14 @@ else
 
  case $extension in
 
-  gz)
+  gz | tgz)
    echo "Uncompressing tar.gz file..."
    tar -xvzf $1
   ;;
 
   zip)
    echo "Uncompressing zip file..."
-   zip $outfile $@
+   unzip $outfile $@
   ;;
 
   bz2)
