@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp archive/* /usr/local/bin
