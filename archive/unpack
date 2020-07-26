@@ -37,7 +37,7 @@ else
 
  case $extension in
 
-  gz | tgz)
+  tgz | gz)
    echo "Uncompressing tar.gz file..."
    tar -xvzf $1
   ;;
