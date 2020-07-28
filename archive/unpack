@@ -1,6 +1,7 @@
 #!/bin/bash
 
 listreq=$1
+outfile=$1
 
 if [ $listreq == "list" ]; then
  shift
@@ -44,7 +45,12 @@ else
 
   zip)
    echo "Uncompressing zip file..."
-   unzip $outfile $@
+   if [ -z "$2" ]; then
+    unzip $outfile # uncompress the contents directly here
+   else
+    shift
+    unzip $outfile -d $1 # uncompress the contents to directory
+   fi
   ;;
 
   bz2)
